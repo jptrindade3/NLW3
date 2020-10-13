@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color: #FFF;
+    background: #ebf2f5;
+}
+
+body, input, button, textarea {
+    font: 600 18px Nunito, sans-serif; /*essa vilgula com o sans serif depois quer dizer que, caso nao carregue a nunito, use qualquer uma fonte sem serifa disponível*/
+}
