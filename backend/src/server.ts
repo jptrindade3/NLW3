@@ -22,12 +22,22 @@
 */
 
 import express from 'express'; //O express tambem precisa do download dos types pra funcionar com o TS
+import 'express-async-errors'; //Essa instalação do express-async-errors é importante, pois o express por conta própria não consegue identificar erros dentro de funções assincronas, e isso o ajuda. tem que ser chamado logo depois do express
+import path from 'path';
+import cors from 'cors';
+
 import routes from './routes';
+import errorHandler from './errors/handler';
+
 import './database/connection';
+
 
 const app = express();
 
+app.use(cors());//Permite liberarmos o uso do backend vindo de diferentes domínios (os frontends estão em outros dominios) de maneira mais segura. o express por padrão é fechado ao acesso externo 
 app.use(express.json());
 app.use(routes);
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads'))); //Cria os links que permitem acessarmos as imagens via url
+app.use(errorHandler);
 
 app.listen(3333);
