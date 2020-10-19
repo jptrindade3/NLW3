@@ -30,7 +30,7 @@ export default {
             about,
             instructions,
             opening_hours,
-            open_on_weekends,
+            open_on_weekends: open_on_weekends == 'true', //forçando o open_on_weekends a ser booleano e não string
             images
         };
 
@@ -52,16 +52,7 @@ export default {
             abortEarly: false, //com o true, ele vai retornar erro no primeiro que vier errado, mas queremos que ele tente todos e nos envie todos os erros no final, e não só o primeiro
         });
 
-        const orphanage = orphanageRepository.create({
-            name,
-            latitude,
-            longitude,
-            about,
-            instructions,
-            opening_hours,
-            open_on_weekends,
-            images
-        });//cria a tabela com base nas informações que escolhemos
+        const orphanage = orphanageRepository.create(data);//cria a tabela com base nas informações que escolhemos
         
         await orphanageRepository.save(orphanage);//salva a tabela criada no banco de dados
     

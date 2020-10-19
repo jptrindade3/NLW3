@@ -35,9 +35,9 @@ import './database/connection';
 const app = express();
 
 app.use(cors());//Permite liberarmos o uso do backend vindo de diferentes domínios (os frontends estão em outros dominios) de maneira mais segura. o express por padrão é fechado ao acesso externo 
-app.use(express.json());
 app.use(routes);
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads'))); //Cria os links que permitem acessarmos as imagens via url
 app.use(errorHandler);
+app.use(express.json());
 
 app.listen(3333);
